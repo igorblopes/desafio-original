@@ -1,5 +1,5 @@
 
-<div id="personList" class="page-layout carded fullwidth">
+<div id="personList">
 
    
 
@@ -12,7 +12,7 @@
                 <mat-icon class="mr-4">
                     contacts
                 </mat-icon>
-                <span class="logo-text h1">Pessoas</span>
+                <span>Pessoas</span>
             </div>
 
            
@@ -53,20 +53,11 @@
                     </mat-cell>
                 </ng-container>
 
-                <ng-container matColumnDef="phone">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm fxFlex="20">Telefone</mat-header-cell>
-                    <mat-cell *matCellDef="let person" fxHide fxShow.gt-sm fxFlex="20">
-                        <p class="text-truncate">
-                            {{ person.phone }}
-                        </p>
-                    </mat-cell>
-                </ng-container>
-
                
                 <ng-container matColumnDef="actions">
                     <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-sm fxFlex="5">Ações</mat-header-cell>
                     <mat-cell *matCellDef="let person" fxHide fxShow.gt-xs fxFlex="5">
-                        <mat-icon class="cursor" (click)="deletePerson(person.id)">delete</mat-icon>
+                        <mat-icon class="cursor" (click)="deletePerson(person.id); $event.stopPropagation();">delete</mat-icon>
                     </mat-cell>
 
                 </ng-container>
@@ -79,15 +70,6 @@
                          (click)="onSelectedRow(person);">
                 </mat-row>
             </mat-table>
-<!-- 
-            <mat-paginator #paginator
-                            [pageIndex]="pageIndex"
-                            [pageSize]="pageSize"
-                            [length] = "totalRows"
-                            [pageSizeOptions]="[10, 50, 100]"
-                            (page)="getPaginatorData($event)"
-                            [showFirstLastButtons]="true">
-            </mat-paginator> -->
 
         </div>
 </div>

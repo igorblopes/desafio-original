@@ -12,19 +12,9 @@ import { Router } from '@angular/router';
 })
 export class PersonListComponent implements OnInit, OnDestroy
 {
-    displayedColumns: string[] = ['cpf', 'name', 'gender', 'phone', 'actions'];  
+    displayedColumns: string[] = ['cpf', 'name', 'gender', 'actions'];  
  
-    // @ViewChild(MatPaginator)
-    // paginator: MatPaginator;
     datasource: any[] = [];
-
-    pageIndex: number = 0;
-    pageSize: number =  10;
-    totalRows: number =  0;
-
-
-    // @ViewChild(MatSort)
-    // sort: MatSort;
 
     rowSelected:any={};
 
@@ -58,7 +48,7 @@ export class PersonListComponent implements OnInit, OnDestroy
     }
 
     openList(): void{
-        this._personService.getPersons()
+        this._personService.getPersonsFit()
             .then((response: any[]) => {
                 this.datasource = response;
             })

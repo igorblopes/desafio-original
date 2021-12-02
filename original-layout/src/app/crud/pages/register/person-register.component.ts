@@ -37,7 +37,9 @@ export class PersonRegisterComponent implements OnInit, OnDestroy {
      * On init
      */
     ngOnInit(): void {
+        this.loadFormByLocalStorage();
         this.listenActiveRoute();
+        this.listenFormChanges();
     }
 
     
@@ -54,6 +56,28 @@ export class PersonRegisterComponent implements OnInit, OnDestroy {
                 .catch(() => this.callSnackBar("Ocorreu um erro ao buscar uma pessoa específica"))
             }
         });
+    }
+
+    listenFormChanges(): void{
+        this.formEntity.valueChanges.subscribe((changes: any) => {
+            this.setLocalStorageForm(changes);
+        });
+    }
+
+    loadFormByLocalStorage(): void{
+        let storageForm = localStorage.getItem('form');
+
+        if(!storageForm) return;
+
+        this.loadPerson(JSON.parse(storageForm));
+    }
+
+    setLocalStorageForm(valueForm: any): void{
+        localStorage.setItem('form', JSON.stringify(valueForm));
+    }
+
+    clearLocalStorageForm(): void{
+        localStorage.removeItem('form');
     }
 
     loadPerson(data: any): void{
@@ -78,8 +102,7 @@ export class PersonRegisterComponent implements OnInit, OnDestroy {
             this.saveEntity(rawData);
         }
 
-        this._router.navigate([`/home`]);
-        
+        this.clearLocalStorageForm();
     }
 
     saveEntity(rawData: any): void{
@@ -92,6 +115,7 @@ export class PersonRegisterComponent implements OnInit, OnDestroy {
             .then(() => {
                 this.callSnackBar(messageOnSuccess);
                 this.createFormClean();
+                this._router.navigate([`/home`]);
             }).catch(() => this.callSnackBar(messageOnError))
     }
 
@@ -104,6 +128,7 @@ export class PersonRegisterComponent implements OnInit, OnDestroy {
         this._personService.updatePerson(person, person.id)
             .then(() => {
                 this.callSnackBar(messageOnSuccess);
+                this._router.navigate([`/home`]);
             }).catch(() => this.callSnackBar(messageOnError))
     }
 

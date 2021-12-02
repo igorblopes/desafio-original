@@ -14,7 +14,7 @@
             </div>
                 
             <div fxLayout="row" class="mr-16" fxLayoutAlign="start center">
-                <button mat-raised-button class="mr-4" color="accent" routerLink="/home">
+                <button mat-raised-button class="mr-4" color="accent" routerLink="/home" (click)="clearLocalStorageForm()">
                     Cancelar
                 </button>
                 <button mat-raised-button [disabled]="formEntity.invalid" (click)="saveOrUpdateEntity()">

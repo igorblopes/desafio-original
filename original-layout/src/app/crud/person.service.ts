@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { PersonEntity } from '../models/PersonEntity.model';
 
@@ -34,10 +33,10 @@ export class PersonService
      *
      * @returns {Promise<any>}
      */
-    getPersons(): Promise<any>
+    getPersonsFit(): Promise<any>
     {
         return new Promise((resolve, reject) => {
-            this._httpClient.get(`${environment.baseUrl}/person/all`)
+            this._httpClient.get(`${environment.baseUrl}/person/all/fit`)
                 .subscribe((response: any) => {
                     resolve(response);
                 }, reject);
@@ -103,54 +102,6 @@ export class PersonService
             }, reject);
         });
     }
-
-    // searchFilterPaginator(filter:any): Promise<any>
-    // {
-    //     return new Promise((resolve, reject) => {
-    //         this._httpClient.post(`${environment.restUrl}/rest/client/searchFilterPaginator`,filter)
-    //             .subscribe((response: any[]) => {
-    //                 resolve(response);
-    //             }, reject);
-    //     });
-    // }
-
-    // getUserAffililate(idaffiliate:number): Promise<any[]>
-    // {
-    //     return new Promise((resolve, reject) => {
-    //         this._httpClient.get(`${environment.restUrl}/rest/affiliate/user/all/${idaffiliate}`)
-    //             .subscribe((response: any[]) => {
-    //                 this.onUsersAffiliateChanged.next(response);
-    //                 resolve(response);
-    //             }, reject);
-    //     });
-    // }
-
-
-    // getAllByAffiliateProcedureEvent(idAffiliate:number): Promise<any[]>
-    // {
-    //     return new Promise((resolve, reject) => {
-    //         this._httpClient.get(`${environment.restUrl}/rest/affiliateProcedureEvent/getAllByAffiliate/${idAffiliate}`)
-    //             .subscribe((response: any[]) => {
-    //                 resolve(response);
-    //             }, reject);
-    //     });
-    // }
-
-   
-
-    
-    // getUserByClient(idClient): Promise<any>
-    // {
-    //     return new Promise((resolve, reject) => {
-    //         this._httpClient.get(`${environment.restUrl}/rest/affiliate/user/get/${idClient}`)
-    //             .subscribe((response: any) => {
-    //                 this.onUserClientChanged.next(response);
-    //                 resolve(response);
-    //             }, reject);
-    //     });
-    // }
-
-   
 
 
 
