@@ -1,0 +1,34 @@
+person-register{
+
+    #person-register{
+        .p-24{
+            padding: 24px;
+        }  
+        .p-8{
+            padding: 8px;
+        }  
+        .pr-4{
+            padding-right: 4px;
+        }
+        .mt-8{
+            margin-top: 8px;
+        }
+        .mb-24{
+            margin-bottom:24px;
+        }
+        .mr-4{
+            margin-right: 4px;
+        }
+        .mr-16{
+            margin-right: 16px;
+        }
+
+        .green-snackbar{
+            background: #3af321!important;
+        }
+        
+        .red-snackbar {
+            background: #f32121;
+        }
+    }
+}
