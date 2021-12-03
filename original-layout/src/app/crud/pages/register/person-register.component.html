@@ -1,0 +1,126 @@
+<div id="person-register" class="page-layout carded fullwidth">
+
+    <div class="top-bg primary"></div>
+
+    <div class="center">
+
+        <div class="p-8" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <div class="mb-24 p-8" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="mr-4">
+                    contacts
+                </mat-icon>
+                <span class="logo-text h1">Pessoa</span>
+            </div>
+                
+            <div fxLayout="row" class="mr-16" fxLayoutAlign="start center">
+                <button mat-raised-button class="mr-4" color="accent" routerLink="/home" (click)="clearLocalStorageForm()">
+                    Cancelar
+                </button>
+                <button mat-raised-button [disabled]="formEntity.invalid" (click)="saveOrUpdateEntity()">
+                    Salvar
+                </button>
+            </div>
+        </div>
+ 
+        <div class="content-card" fusePerfectScrollbar>
+
+            <div class="content mb-24" fxLayout="column" fxLayoutAlign="start">
+
+                
+
+                <div fxLayout="row" fxLayoutAlign="start">
+
+                    <form class="p-24" fxLayout="column" fxLayoutAlign="start" fxFlex="100" [formGroup]="formEntity">
+                                        
+                        <div fxLayout="column">
+
+                            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="100">
+
+                               
+                                
+                                <mat-form-field appearance="outline" fxFlex="20" class="pr-4">
+                                    <mat-label>CPF</mat-label>
+                                    <input matInput type="number" formControlName="cpf" placeholder="EX: 00000000000" required />
+                                    
+                                    <mat-error *ngIf="formEntity.get('cpf')?.hasError('required')">
+                                        <span>O campo CPF é obrigatório</span>
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="outline" fxFlex="20" class="pr-4">
+                                    <mat-label>Identidade</mat-label>
+                                    <input matInput type="number" formControlName="identity" placeholder="EX: 00000000" required>
+                                    
+                                    <mat-error *ngIf="formEntity.get('identity')?.hasError('required')">
+                                        <span>O campo Identidade é obrigatório</span>
+                                    </mat-error>
+                                </mat-form-field>
+                                
+                                <mat-form-field appearance="outline" fxFlex="60" class="pr-4">
+                                    <mat-label>Nome</mat-label>
+                                    <input matInput formControlName="name" required>
+                                    
+                                    <mat-error *ngIf="formEntity.get('name')?.hasError('required')">
+                                        <span>O campo Nome é obrigatório</span>
+                                    </mat-error>
+                                </mat-form-field>
+                                
+                            </div>
+
+                            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="100">
+                          
+                                <mat-radio-group formControlName="gender" aria-label="Select an option" fxFlex="20">
+                                    <mat-radio-button value="MASCULINO" class="pr-4">Masculino</mat-radio-button>
+                                    <mat-radio-button value="FEMININO">Feminino</mat-radio-button>
+                                </mat-radio-group>
+                          
+
+                                <mat-form-field appearance="outline" fxFlex="80" class="pr-4">
+                                    <mat-label>Telefone</mat-label>
+                                    <input matInput type="number" formControlName="phone" placeholder="EX: 31999999999" required>
+                                    
+                                    <mat-error *ngIf="formEntity.get('phone')?.hasError('required')">
+                                        <span>O campo Telefone é obrigatório</span>
+                                    </mat-error>
+                                </mat-form-field>
+
+                            </div>
+
+                            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="100" class="mt-8">
+                                <span>Filiação</span>
+                            </div>
+
+                            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="100">
+                                <mat-form-field appearance="outline" fxFlex="100" class="pr-4">
+                                    <mat-label>Mãe</mat-label>
+                                    <input matInput formControlName="mother" required>
+                                    
+                                    <mat-error *ngIf="formEntity.get('mother')?.hasError('required')">
+                                        <span>O campo Mãe é obrigatório</span>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="100">
+                                <mat-form-field appearance="outline" fxFlex="100" class="pr-4">
+                                    <mat-label>Pai</mat-label>
+                                    <input matInput formControlName="father">
+                                   
+                                </mat-form-field>
+                            </div>
+                            
+                            
+                        </div>
+                    
+                    </form>
+
+                </div>
+
+                
+
+            </div>
+
+        </div>
+    </div>
+</div>

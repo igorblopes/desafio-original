@@ -1,0 +1,75 @@
+
+<div id="personList">
+
+   
+
+    <div fxLayout="column" class="center">
+
+        
+        <div class="p-8" fxLayout="row" fxLayoutAlign="center center">
+
+            <div class="mb-24 p-8" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="mr-4">
+                    contacts
+                </mat-icon>
+                <span>Pessoas</span>
+            </div>
+
+           
+
+            <div fxLayout="row" fxFlex="100" fxLayoutAlign="end end">
+                <!-- <button mat-raised-button  color="primary" (click)="toGoRegister()">novo</button> -->
+                <button mat-raised-button  color="primary" routerLink="/person/new">novo</button>
+            </div>
+
+        </div>
+
+        <div fxLayout="row" fxFlex="100" class="p-8" >
+
+            <mat-table class="person-table"
+                       #table [dataSource]="datasource"
+                       matSort
+                       fxFlex="100">
+
+                <ng-container matColumnDef="cpf">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm fxFlex="20">CPF</mat-header-cell>
+                    <mat-cell *matCellDef="let person" fxHide fxShow.gt-sm fxFlex="20">
+                        <p class="text-truncate">{{ person.cpf}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm fxFlex="40">Name</mat-header-cell>
+                    <mat-cell *matCellDef="let person" fxHide fxShow.gt-sm fxFlex="40">
+                        <p class="text-truncate">{{ person.name}}</p>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="gender">
+                    <mat-header-cell *matHeaderCellDef  mat-sort-header fxHide fxShow.gt-sm fxFlex="15">Genero</mat-header-cell>
+                    <mat-cell *matCellDef="let person" fxHide fxShow.gt-sm fxFlex="15">
+                        <p class="text-truncate">
+                            {{ person.gender }}
+                        </p>
+                    </mat-cell>
+                </ng-container>
+
+               
+                <ng-container matColumnDef="actions">
+                    <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-sm fxFlex="5">Ações</mat-header-cell>
+                    <mat-cell *matCellDef="let person" fxHide fxShow.gt-xs fxFlex="5">
+                        <mat-icon class="cursor" (click)="deletePerson(person.id); $event.stopPropagation();">delete</mat-icon>
+                    </mat-cell>
+
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+
+                <mat-row *matRowDef="let person; columns: displayedColumns;"
+                         class="person-list"
+                         matRipple
+                         (click)="onSelectedRow(person);">
+                </mat-row>
+            </mat-table>
+
+        </div>
+</div>
